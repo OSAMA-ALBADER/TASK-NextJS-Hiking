@@ -8,9 +8,9 @@ function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <NavLink href="/" className="text-white text-xl">
+          <Link href="/" className="text-white text-xl">
             Hike
-          </NavLink>
+          </Link>
 
           <div className="hidden md:block" id="navbarResponsive">
             <ul className="flex space-x-4">

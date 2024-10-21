@@ -1,19 +1,44 @@
 "use client";
 
 import trips from "@/data/trips";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import SearchBar from "@/components/SearchBar";
 import TripCard from "@/components/TripCard";
 
 function TripList() {
   const [query, setQuery] = useState("");
-  //const [difficulty, setDifficulty] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [search, setSearch] = useState(0);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const currentDifficulty = searchParams.get("difficulty");
+    if (currentDifficulty) {
+      setDifficulty(currentDifficulty);
+    }
+  }, [searchParams]);
 
   const tripCards = trips
     .filter((trip) => trip.name.toLowerCase().includes(query.toLowerCase()))
-    // .filter((trip) => trip.difficulty.includes(difficulty))
+    .filter((trip) =>
+      difficulty ? trip.difficulty.includes(difficulty) : true
+    )
     .map((trip, index) => <TripCard trip={trip} key={index} />);
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <section className="py-24 bg-white" id="portfolio">
       <div className="container mx-auto px-4">
@@ -24,20 +49,47 @@ function TripList() {
         <SearchBar setQuery={setQuery} />
         <div className="text-center mt-4">
           <button
-            //onClick={() => setDifficulty("easy")}
-            className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+            onClick={() => {
+              setSearch(1);
+              router.push(
+                pathname + "?" + createQueryString("difficulty", "easy")
+              );
+            }}
+            className={
+              search === 1
+                ? "bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2 underline"
+                : "bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+            }
           >
             Easy
           </button>
           <button
-            //onClick={() => setDifficulty("moderate")}
-            className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+            onClick={() => {
+              setSearch(2);
+              router.push(
+                pathname + "?" + createQueryString("difficulty", "moderate")
+              );
+            }}
+            className={
+              search === 2
+                ? "bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2 underline"
+                : "bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+            }
           >
             Moderate
           </button>
           <button
-            //onClick={() => setDifficulty("hard")}
-            className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+            onClick={() => {
+              setSearch(3);
+              router.push(
+                pathname + "?" + createQueryString("difficulty", "hard")
+              );
+            }}
+            className={
+              search === 3
+                ? "bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2 underline"
+                : "bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+            }
           >
             Hard
           </button>
