@@ -8,15 +8,15 @@ function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <NavLink href="#" className="text-white text-xl">
+          <Link href="/" className="text-white text-xl">
             Hike
-          </NavLink>
+          </Link>
 
           <div className="hidden md:block" id="navbarResponsive">
             <ul className="flex space-x-4">
               <li>
                 <NavLink
-                  href="#"
+                  href="/"
                   className="text-white hover:text-primary py-3 px-3 rounded transition duration-300"
                 >
                   Home
@@ -24,7 +24,7 @@ function Navbar() {
               </li>
               <li>
                 <NavLink
-                  href="#"
+                  href="/trips"
                   className="text-white hover:text-primary py-3 px-3 rounded transition duration-300"
                 >
                   Trips
