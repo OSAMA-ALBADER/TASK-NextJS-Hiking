@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* adding a nave bar */}
         <Navbar />
         {children}
       </body>
