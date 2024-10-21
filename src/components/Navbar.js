@@ -1,3 +1,5 @@
+import Link from "next/link";
+import NavLink from "./NavLink";
 function Navbar() {
   return (
     <nav
@@ -6,27 +8,27 @@ function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <a href="#" className="text-white text-xl">
+          <NavLink href="#" className="text-white text-xl">
             Hike
-          </a>
+          </NavLink>
 
           <div className="hidden md:block" id="navbarResponsive">
             <ul className="flex space-x-4">
               <li>
-                <a
+                <NavLink
                   href="#"
                   className="text-white hover:text-primary py-3 px-3 rounded transition duration-300"
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
                   href="#"
                   className="text-white hover:text-primary py-3 px-3 rounded transition duration-300"
                 >
                   Trips
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
