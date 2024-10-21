@@ -3,15 +3,17 @@
 import trips from "@/data/trips";
 import { useState } from "react";
 
-import SearchBar from "./SearchBar";
-import TripCard from "./TripCard";
+import SearchBar from "@/components/SearchBar";
+import TripCard from "@/components/TripCard";
 
 function TripList() {
   const [query, setQuery] = useState("");
+  //const [difficulty, setDifficulty] = useState("");
+
   const tripCards = trips
     .filter((trip) => trip.name.toLowerCase().includes(query.toLowerCase()))
+    // .filter((trip) => trip.difficulty.includes(difficulty))
     .map((trip, index) => <TripCard trip={trip} key={index} />);
-
   return (
     <section className="py-24 bg-white" id="portfolio">
       <div className="container mx-auto px-4">
@@ -21,13 +23,22 @@ function TripList() {
         <br />
         <SearchBar setQuery={setQuery} />
         <div className="text-center mt-4">
-          <button className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2">
+          <button
+            //onClick={() => setDifficulty("easy")}
+            className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+          >
             Easy
           </button>
-          <button className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2">
+          <button
+            //onClick={() => setDifficulty("moderate")}
+            className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+          >
             Moderate
           </button>
-          <button className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2">
+          <button
+            //onClick={() => setDifficulty("hard")}
+            className="bg-primary hover:bg-primarydark text-white  py-5 px-6 rounded-lg text-lg mx-2 mb-2"
+          >
             Hard
           </button>
         </div>

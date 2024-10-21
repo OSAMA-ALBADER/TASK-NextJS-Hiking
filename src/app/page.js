@@ -1,6 +1,4 @@
 import Navbar from "@/components/Navbar";
-import TripDetail from "@/components/TripDetail";
-import TripList from "@/components/TripList";
 import Welcome from "@/components/Welcome";
 
 export default function Home() {
@@ -8,8 +6,6 @@ export default function Home() {
     <div>
       <Navbar />
       <Welcome />
-      <TripList />
-      <TripDetail />
     </div>
   );
 }
